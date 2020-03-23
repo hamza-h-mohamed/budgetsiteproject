@@ -1,0 +1,31 @@
+{% extends "home/base.html" %}
+{%block content %}
+
+<div class="container">
+    <h2>Report of Spending</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Spending Amount</th>
+                <th>Bills</th>
+                <th>Personal Expenses</th>
+                <th>Gas</th>
+                <th>Food&Drink</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in report_list %}
+            <tr>
+                    <td>{{report.maxAmount}} </td>
+                    <td>{{report.bills}} </td>
+                    <td>{{report.personal_expense}} </td>
+                    <td>{{report.gas}} </td>
+                    <td>{{report.food_drink}} </td>
+                </tr>
+                {%endfor%}
+
+        </tbody>
+    </table>
+</div>
+
+{%endblock content %}

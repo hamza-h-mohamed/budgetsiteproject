@@ -1,0 +1,31 @@
+{% extends "home/base.html" %}
+{% block content %}
+
+
+    <div class="container mt-5">
+        <h2>Saving</h2>
+        <ul class="list-group">
+            <h5>Amount:</h5> <li class="list-group-item w-50">$300</li>
+          </ul>     
+        <h2>Checking</h2>
+        <ul class="list-group">
+            <h5>Amount:</h5> <li class="list-group-item w-50">$300</li>
+        </ul>     
+    </div>
+    <div class="container mt-3">
+        
+            <h2>Spending Plan</h2>
+            {% for spending in spending_list %}
+            <ul class="list-group">
+                <h5>Max Spending Amount: </h5><li class="list-group-item pb w-50">${{spending.maxSpendAmount}} </li>
+                <h5>Bills:</h5> <li class="list-group-item pb w-50">${{spending.bills}} </li>
+            <h5>   Personal Expenses:</h5> <li class="list-group-item pb w-50">${{spending.personal_expense}} </li>
+                <h5>Gas:</h5><li class="list-group-item pb w-50">${{spending.gas}} </li>
+                <h5>Food&Drink</h5> <li class="list-group-item pb w-50">${{spending.food_drink}} </li>
+            </ul>     
+        {%endfor%}
+    </div>
+
+  
+
+{% endblock content %}

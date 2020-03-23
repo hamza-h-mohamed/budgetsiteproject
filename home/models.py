@@ -20,10 +20,10 @@ class Spending(models.Model):
 class Report(models.Model):
 
     CHOICES_TYPES = [
-        ('Bills','Bills')
-        ('Food_Drinks','Food_Drinks')
-        ('Gas','Gas')
-        ('Personal_Expense','Personal_Expense')
+        ('Bills','Bills'),
+        ('Food_Drinks','Food_Drinks'),
+        ('Gas','Gas'),
+        ('Personal_Expense','Personal_Expense'),
     ]
     name = models.CharField(
         max_length=50,
@@ -32,3 +32,7 @@ class Report(models.Model):
     )
     date_pushed = models.DateTimeField(default=timezone.now)
     maxAmount = models.IntegerField()
+
+    def amount(self):
+        spent = list(Report.objects.aggregate(Sum('maxAmount')).values())[0] or 0 # the or 0 is required in case the query is an empty query set.
+        return spent
