@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.db.models import Sum
 
 class Saving(models.Model):
 
@@ -32,7 +33,16 @@ class Report(models.Model):
     )
     date_pushed = models.DateTimeField(default=timezone.now)
     maxAmount = models.IntegerField()
+    
+
+class Summary(models.Model):
+    summary = models.BooleanField(null=True)
+    summaryAmount = models.IntegerField(null=True)
 
     def amount(self):
-        spent = list(Report.objects.aggregate(Sum('maxAmount')).values())[0] or 0 # the or 0 is required in case the query is an empty query set.
-        return spent
+        if self.summary == True:
+            self.summaryAmount = list(Report.objects.aggregate(Sum('maxAmount')).values())[0] or 0 # the or 0 is required in case the query is an empty query set.
+        else:
+            s = Summary.objects.all()
+            s.delete()
+        return self.summaryAmount

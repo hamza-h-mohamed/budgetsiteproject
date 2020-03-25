@@ -1,0 +1,25 @@
+{% extends "home/base.html" %}
+{%block content %}
+
+<div class="container">
+    <h2>Summary of Total Spent</h2>
+    <table class="table table-bordered">
+       
+        <tbody>
+            
+            {% for summaries in summary_list %}
+            <tr> 
+                {% if summaries.amount == null %}
+                {%else%}
+                    <td class="w-25">Spent: ${{summaries.amount}} </td>
+                {%endif%}
+            </tr>
+            
+            {%endfor%}
+        </tbody>
+        
+    </table>
+    
+</div>
+
+{%endblock content %}
